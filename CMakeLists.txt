@@ -48,9 +48,6 @@ if(NOT TARGET uninstall)
                             ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
 
-message(STATUS ${STGLAUBER_LIBS})
-message(STATUS ${STGLAUBER_INCLUDE})
-
 # export the project variables if not root directory
 if(NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
 	set(STGLAUBER_INCLUDE_DIRS ${STGLAUBER_INCLUDE} ${ROOT_INCLUDE_DIRS} PARENT_SCOPE)
