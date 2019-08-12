@@ -31,7 +31,7 @@ include_directories(BEFORE ${PROJECT_BINARY_DIR})
 
 # exported variables
 set(STGLAUBER_LIBS)
-set(STGLAUBER_INCLUDE)
+set(STGLAUBER_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # finally, add the source tree
 add_subdirectory(stglauber)
