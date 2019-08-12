@@ -77,23 +77,23 @@ StFastGlauberMcMaker::StFastGlauberMcMaker(
 
   // Initialize nuclei
   if ( system.CompareTo("auau", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker  Initialize AuAu collisions" ;
+    std::cout  << "StFastGlauberMcMaker  Initialize AuAu collisions" << std::endl;
     InitAuAu(type);
   }
   else if ( system.CompareTo("smsm", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker  Initialize SmSm collisions" ;
+    std::cout  << "StFastGlauberMcMaker  Initialize SmSm collisions" << std::endl;
     InitSmSm(type);
   }
   else if ( system.CompareTo("uu", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker  Initialize UU collisions" ;
+    std::cout  << "StFastGlauberMcMaker  Initialize UU collisions" << std::endl;
     InitUU(type);
   }
   else if ( system.CompareTo("pbpb", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker  Initialize PbPb collisions" ;
+    std::cout  << "StFastGlauberMcMaker  Initialize PbPb collisions" << std::endl;
     InitPbPb(type);
   }
   else if ( system.CompareTo("cucu", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker  Initialize CuCu collisions" ;
+    std::cout  << "StFastGlauberMcMaker  Initialize CuCu collisions" << std::endl;
     InitCuCu(type);
   }
   else{
@@ -320,7 +320,7 @@ Int_t StFastGlauberMcMaker::Init(
         mfWoodsSaxon2D[in]->SetParameter(3, beta4B) ;
       }
 
-      std::cout  << "StFastGlauberMcMaker::Init  Initialize Deformed Woods-saxon density profile" ;
+      std::cout  << "StFastGlauberMcMaker::Init  Initialize Deformed Woods-saxon density profile" << std::endl;
       for(Int_t ipar=0; ipar<mfWoodsSaxon2D[in]->GetNpar(); ipar++){
         std::cout  << "StFastGlauberMcMaker::Init  par[" << ipar << "] = " << mfWoodsSaxon2D[in]->GetParameter(ipar)
           << ",  parName = " << mfWoodsSaxon2D[in]->GetParName(ipar)
@@ -344,7 +344,7 @@ Int_t StFastGlauberMcMaker::Init(
         mfWoodsSaxon[in]->SetParameter(1, skinDepthB) ;
       }
 
-      std::cout  << "StFastGlauberMcMaker::Init  Initialize Spherical Woods-saxon density profile" ;
+      std::cout  << "StFastGlauberMcMaker::Init  Initialize Spherical Woods-saxon density profile" << std::endl;
       for(Int_t ipar=0; ipar<mfWoodsSaxon[in]->GetNpar(); ipar++){
         std::cout  << "StFastGlauberMcMaker::Init  par[" << ipar << "] = " << mfWoodsSaxon[in]->GetParameter(ipar)
           << ",  parName = " << mfWoodsSaxon[in]->GetParName(ipar)
@@ -355,7 +355,7 @@ Int_t StFastGlauberMcMaker::Init(
     /// Initialize nucleons
     mNucleons[in].clear() ;
     const UInt_t A = (in==0) ? massNumberA : massNumberB ;
-    std::cout  << "StFastGlauberMcMaker::Init  Initialize " << A << " nucleons ..." ;
+    std::cout  << "StFastGlauberMcMaker::Init  Initialize " << A << " nucleons ..." << std::endl;
 
     for(UInt_t i=0;i<A;i++){
       mNucleons[in].push_back( new Nucleon() ) ;
@@ -390,7 +390,7 @@ Int_t StFastGlauberMcMaker::InitAuAu(const TString type)
 
   // Deformation
   if( mIsDeformed[0] || mIsDeformed[1] ){
-    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set deformation for Au nuclei" ;
+    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set deformation for Au nuclei" << std::endl;
     beta2 = -0.131 ; // Deformation parameter beta2
     beta4 = -0.031 ; // Deformation parameter beta4
 //    beta6 =  0.007 ; // Deformation parameter beta6
@@ -400,21 +400,21 @@ Int_t StFastGlauberMcMaker::InitAuAu(const TString type)
   // R = 6.38 +/- 0.06, d = 0.535 +/- 0.027
   //   --> take 2 sigma
   if ( type.CompareTo("large", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set large R, small d" ;
+    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set large R, small d" << std::endl;
     RError = 0.12 ;
     dError = -0.054 ;
    // RError = 0.32 ;   //5%
    // dError = -0.0267 ;//5%
   }
   else if ( type.CompareTo("small", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set small R, large d" ;
+    std::cout  << "StFastGlauberMcMaker::InitAuAu  Set small R, large d" << std::endl;
     RError = -0.12 ;
     dError = 0.054 ;
    // RError = -0.32 ;  //5%
    // dError = 0.0267 ; //5%
   }
   else if ( type.CompareTo("gauss", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitAuAu  Gaussian collision profile" ;
+    std::cout  << "StFastGlauberMcMaker::InitAuAu  Gaussian collision profile" << std::endl;
     DoGaussianCollision() ;
   }
   else if ( type.CompareTo("smallNpp", TString::kIgnoreCase) == 0 ){
@@ -458,7 +458,7 @@ Int_t StFastGlauberMcMaker::InitSmSm(const TString type)
 
   // Deformation
   if ( mIsDeformed[0] || mIsDeformed[1]){
-    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set deformation for Sm nuclei" ;
+    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set deformation for Sm nuclei" << std::endl;
     beta2 = 0.270 ; // Deformation parameter beta2
     beta4 = 0.113 ; // Deformation parameter beta4
 //    beta6 = -0.005 ; // Deformation parameter beta6
@@ -469,17 +469,17 @@ Int_t StFastGlauberMcMaker::InitSmSm(const TString type)
   // No R and d parameters for Sm144
   //   --> take 2 sigma
   if ( type.CompareTo("large", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set large R, small d" ;
+    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set large R, small d" << std::endl;
     RError = 0.01 ;
     dError = -0.030 ;
   }
   else if ( type.CompareTo("small", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set small R, large d" ;
+    std::cout  << "StFastGlauberMcMaker::InitSmSm  Set small R, large d" << std::endl;
     RError = -0.01 ;
     dError = 0.030 ;
   }
   else if ( type.CompareTo("gauss", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitSmSm  Gaussian collision profile" ;
+    std::cout  << "StFastGlauberMcMaker::InitSmSm  Gaussian collision profile" << std::endl;
     DoGaussianCollision() ;
   }
   else if ( type.CompareTo("smallNpp", TString::kIgnoreCase) == 0 ){
@@ -515,7 +515,7 @@ Int_t StFastGlauberMcMaker::InitUU(const TString type)
 
   // Deformation
   if ( mIsDeformed[0] || mIsDeformed[1]){
-    std::cout  << "StFastGlauberMcMaker::InitUU  Set deformation for U nuclei" ;
+    std::cout  << "StFastGlauberMcMaker::InitUU  Set deformation for U nuclei" << std::endl;
     beta2 = 0.28  ; // Deformation parameter beta2
     beta4 = 0.093 ; // Deformation parameter beta4
 //    beta6 =  0.007 ; // Deformation parameter beta6
@@ -528,17 +528,17 @@ Int_t StFastGlauberMcMaker::InitUU(const TString type)
   //  \Delta R = 0.0686 fm, \Delta d = 0.049 fm
   //   --> take 2 sigma
   if ( type.CompareTo("large", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitUU  Set large R, small d" ;
+    std::cout  << "StFastGlauberMcMaker::InitUU  Set large R, small d" << std::endl;
     RError = 0.137 ;
     dError = -0.098 ;
   }
   else if ( type.CompareTo("small", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitUU  Set small R, large d" ;
+    std::cout  << "StFastGlauberMcMaker::InitUU  Set small R, large d" << std::endl;
     RError = -0.137 ;
     dError = 0.098 ;
   }
   else if ( type.CompareTo("gauss", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitUU  Gaussian collision profile" ;
+    std::cout  << "StFastGlauberMcMaker::InitUU  Gaussian collision profile" << std::endl;
     DoGaussianCollision() ;
   }
   else if ( type.CompareTo("smallNpp", TString::kIgnoreCase) == 0 ){
@@ -574,23 +574,23 @@ Int_t StFastGlauberMcMaker::InitPbPb(const TString type)
 
   // Deformation
   if ( mIsDeformed[0] || mIsDeformed[1]){
-    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set deformation for Pb nuclei" ;
+    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set deformation for Pb nuclei" << std::endl;
     beta2 = 0.0;
     beta4 = 0.0;
   }
 
   if ( type.CompareTo("large", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set large R, small d" ;
+    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set large R, small d" << std::endl;
     RError = 0.120 ;
     dError = -0.020 ;
   }
   else if ( type.CompareTo("small", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set small R, large d" ;
+    std::cout  << "StFastGlauberMcMaker::InitPbPb  Set small R, large d" << std::endl;
     RError = -0.120 ;
     dError = 0.020 ;
   }
   else if ( type.CompareTo("gauss", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitPbPb  Gaussian collision profile" ;
+    std::cout  << "StFastGlauberMcMaker::InitPbPb  Gaussian collision profile" << std::endl;
     DoGaussianCollision() ;
   }
   else if ( type.CompareTo("smallNpp", TString::kIgnoreCase) == 0 ){
@@ -626,24 +626,24 @@ Int_t StFastGlauberMcMaker::InitCuCu(const TString type)
 
   // Deformation
   if ( mIsDeformed[0] || mIsDeformed[1]){
-    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set deformation for Cu nuclei" ;
+    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set deformation for Cu nuclei" << std::endl;
     beta2 = 0.162  ; // Deformation parameter beta2
     beta4 = -0.006 ; // Deformation parameter beta4
   }
 
   // Error on R and d is taken from Atomic Data and Nuclear Table 36, 495 (1987)
   if ( type.CompareTo("large", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set large R, small d" ;
+    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set large R, small d" << std::endl;
     RError = 0.041 ;
     dError = -0.016 ;
   }
   else if ( type.CompareTo("small", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set small R, large d" ;
+    std::cout  << "StFastGlauberMcMaker::InitCuCu  Set small R, large d" << std::endl;
     RError = -0.041 ;
     dError = 0.016 ;
   }
   else if ( type.CompareTo("gauss", TString::kIgnoreCase) == 0 ){
-    std::cout  << "StFastGlauberMcMaker::InitCuCu  Gaussian collision profile" ;
+    std::cout  << "StFastGlauberMcMaker::InitCuCu  Gaussian collision profile" << std::endl;
     DoGaussianCollision() ;
   }
   else if ( type.CompareTo("smallNpp", TString::kIgnoreCase) == 0 ){
@@ -689,12 +689,12 @@ Bool_t StFastGlauberMcMaker::IsCollision(Nucleon* nucleon0, Nucleon* nucleon1) c
     default:
       {
         Error("StFastGlauberMcMaker::IsCollision", "No collision profile specified. see below");
-        std::cout  << "  profile               description                         function" ;
-        std::cout  << "  Hard-core profile    cut off distance  = sqrt(sigma/pi)   DoHardCoreCollision()" ;
-        std::cout  << "  Gaussian profile     sigma of gaussian = sqrt(sigma/pi)   DoGaussianCollision()" ;
+        std::cout  << "  profile               description                         function" << std::endl;
+        std::cout  << "  Hard-core profile    cut off distance  = sqrt(sigma/pi)   DoHardCoreCollision()" << std::endl;
+        std::cout  << "  Gaussian profile     sigma of gaussian = sqrt(sigma/pi)   DoGaussianCollision()" << std::endl;
         std::cout  ;
-        std::cout  << " d: transverse distrance between two nucleons (fm)" ;
-        std::cout  << " sigma: Inelastic N-N cross section (fm^2)" ;
+        std::cout  << " d: transverse distrance between two nucleons (fm)" << std::endl;
+        std::cout  << " sigma: Inelastic N-N cross section (fm^2)" << std::endl;
         assert(0);
       }
   }
@@ -971,7 +971,7 @@ Int_t StFastGlauberMcMaker::Make()
 //____________________________________________________________________________________________________
 Int_t StFastGlauberMcMaker::Run(const UInt_t nevents)
 {
-  std::cout  << "StFastGlauberMcMaker::Run  Run " << nevents << " events ..." ;
+  std::cout  << "StFastGlauberMcMaker::Run  Run " << nevents << " events ..." << std::endl;
 
   while( mNeventsAccept < nevents ){
     if ( Make() == 1 ){
@@ -1085,7 +1085,7 @@ Int_t StFastGlauberMcMaker::Finish()
   mGlauberTree->SetVersion(mVersion);
   mGlauberTree->FillHeader() ;
 
-  std::cout  << "StFastGlauberMcMaker::Finish  Close ROOT file" ;
+  std::cout  << "StFastGlauberMcMaker::Finish  Close ROOT file" << std::endl;
   mGlauberTree->Close();
 
   return 1;
@@ -1095,13 +1095,13 @@ Int_t StFastGlauberMcMaker::Finish()
 void StFastGlauberMcMaker::DoHardCoreSmearing()
 {
   mHardCoreSmearing = kTRUE ;
-  std::cout  << "StFastGlauberMcMaker::DoHardCoreSmearing  Hard-core smearing in (x,y,z) ";
-  std::cout  << "by using the step function with inelastic nn cross section" ;
+  std::cout  << "StFastGlauberMcMaker::DoHardCoreSmearing  Hard-core smearing in (x,y,z) " << std::endl;
+  std::cout  << "by using the step function with inelastic nn cross section" << std::endl;
 
   /// Turn off Gaussian smearing
   mGaussianSmearing = kFALSE ;
   if(mDebug){
-    std::cout  << "StFastGlauberMcMaker::DoHardCoreSmearing  Gaussian smearing turned off" ;
+    std::cout  << "StFastGlauberMcMaker::DoHardCoreSmearing  Gaussian smearing turned off" << std::endl;
   }
 }
 
@@ -1109,13 +1109,13 @@ void StFastGlauberMcMaker::DoHardCoreSmearing()
 void StFastGlauberMcMaker::DoGaussianSmearing()
 {
   mGaussianSmearing = kTRUE ;
-  std::cout  << "StFastGlauberMcMaker::DoGaussianSmearing  gaussian smearing in (x,y,z) ";
-  std::cout  << "by using the gaussian function with fixed sigma" ;
+  std::cout  << "StFastGlauberMcMaker::DoGaussianSmearing  gaussian smearing in (x,y,z) " << std::endl;
+  std::cout  << "by using the gaussian function with fixed sigma" << std::endl;
 
   /// Turn off Hard-core smearing
   mHardCoreSmearing = kFALSE ;
   if(mDebug){
-    std::cout  << "StFastGlauberMcMaker::DoGaussianSmearing  hard-core smearing turned off" ;
+    std::cout  << "StFastGlauberMcMaker::DoGaussianSmearing  hard-core smearing turned off" << std::endl;
   }
 }
 
@@ -1189,7 +1189,7 @@ Double_t StFastGlauberMcMaker::GetInelasticNNCrossSection(const Double_t energy,
   }
 
   if(mDebug){
-    std::cout  << "StFastGlauberMcMaker::GetInelasticNNCrossSection  ";
+    std::cout  << "StFastGlauberMcMaker::GetInelasticNNCrossSection  " << std::endl;
     std::cout  << "Inelastic NN cross section = " << sigmaNN * 10 << " (mb) for sqrt(sNN) = " << energy
          ;
   }
@@ -1319,7 +1319,7 @@ TGraph* StFastGlauberMcMaker::GetParticipantEccentricity(const Double_t order, c
 void StFastGlauberMcMaker::DebugOn()
 {
   mDebug = 1 ;
-  std::cout  << "StFastGlauberMcMaker::DebugOn  Set debug mode, will see a bunch of debugging messages" ;
+  std::cout  << "StFastGlauberMcMaker::DebugOn  Set debug mode, will see a bunch of debugging messages" << std::endl;
 }
 
 //____________________________________________________________________________________________________
@@ -1327,28 +1327,28 @@ void StFastGlauberMcMaker::Print(const TString option) const
 {
   if( option.CompareTo("type", TString::kIgnoreCase) == 0 ){
     std::cout  ;
-    std::cout  << "#----------------------------------------------------------------------------------------------------" ;
-    std::cout  << "StFastGlauberMcMaker::Print  Current available types are:" ;
-    std::cout  << "type               description" ;
-    std::cout  << " default" ;
-    std::cout  << " large              Large R(+2%), small d(-10%)" ;
-    std::cout  << " small              Small R(-2%), large d(+10%)" ;
-    std::cout  << " largeXsec          Large inelastic NN cross section (+1mb)" ;
-    std::cout  << " smallXsec          Small inelastic NN cross section (-1mb)" ;
-    std::cout  << " gauss              Use gaussian collision profile" ;
-    std::cout  << " largeNpp           Use large Npp, small x" ;
-    std::cout  << " smallNpp           Use small Npp, large x" ;
-    std::cout  << "----------------------------------------------------------------------------------------------------" ;
-    std::cout  << "NOTE:  Types below are not relevant for generating trees." ;
-    std::cout  << "NOTE:  Only important for making histograms by StGlauberAnalysisMaker." ;
-    std::cout  << "NOTE:  Users should use the default outputs and modify type to see " ;
-    std::cout  << "NOTE:  the effect of different total cross section, for example" ;
+    std::cout  << "#----------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout  << "StFastGlauberMcMaker::Print  Current available types are:" << std::endl;
+    std::cout  << "type               description" << std::endl;
+    std::cout  << " default" << std::endl;
+    std::cout  << " large              Large R(+2%), small d(-10%)" << std::endl;
+    std::cout  << " small              Small R(-2%), large d(+10%)" << std::endl;
+    std::cout  << " largeXsec          Large inelastic NN cross section (+1mb)" << std::endl;
+    std::cout  << " smallXsec          Small inelastic NN cross section (-1mb)" << std::endl;
+    std::cout  << " gauss              Use gaussian collision profile" << std::endl;
+    std::cout  << " largeNpp           Use large Npp, small x" << std::endl;
+    std::cout  << " smallNpp           Use small Npp, large x" << std::endl;
+    std::cout  << "----------------------------------------------------------------------------------------------------" << std::endl;
+    std::cout  << "NOTE:  Types below are not relevant for generating trees." << std::endl;
+    std::cout  << "NOTE:  Only important for making histograms by StGlauberAnalysisMaker." << std::endl;
+    std::cout  << "NOTE:  Users should use the default outputs and modify type to see " << std::endl;
+    std::cout  << "NOTE:  the effect of different total cross section, for example" << std::endl;
     std::cout  ;
-    std::cout  << " largeTotal         +5% total cross section" ;
-    std::cout  << " smallTotal         -5% total cross section" ;
-    std::cout  << " lowrw              +2(-2) sigma p0 (p1) parameter for re-weighting correction" ;
-    std::cout  << " highrw             -2(+2) sigma p0 (p1) parameter for re-weighting correction" ;
-    std::cout  << "#----------------------------------------------------------------------------------------------------" ;
+    std::cout  << " largeTotal         +5% total cross section" << std::endl;
+    std::cout  << " smallTotal         -5% total cross section" << std::endl;
+    std::cout  << " lowrw              +2(-2) sigma p0 (p1) parameter for re-weighting correction" << std::endl;
+    std::cout  << " highrw             -2(+2) sigma p0 (p1) parameter for re-weighting correction" << std::endl;
+    std::cout  << "#----------------------------------------------------------------------------------------------------" << std::endl;
     std::cout  ;
   }
 }

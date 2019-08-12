@@ -29,6 +29,10 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c11")
 include_directories(BEFORE ${PROJECT_SOURCE_DIR})
 include_directories(BEFORE ${PROJECT_BINARY_DIR})
 
+# exported variables
+set(STGLAUBER_LIBS)
+set(STGLAUBER_INCLUDE)
+
 # finally, add the source tree
 add_subdirectory(stglauber)
 
@@ -43,6 +47,9 @@ if(NOT TARGET uninstall)
                     COMMAND ${CMAKE_COMMAND} -P
                             ${CMAKE_CURRENT_BINARY_DIR}/cmake_uninstall.cmake)
 endif()
+
+message(STATUS ${STGLAUBER_LIBS})
+message(STATUS ${STGLAUBER_INCLUDE})
 
 # export the project variables if not root directory
 if(NOT CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
