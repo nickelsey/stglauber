@@ -120,7 +120,7 @@ StGlauberUtilities::StGlauberUtilities()
 
   /// Define TRandom and seed here, will be used in any classes
   mRandom = new TRandom3() ;
-  mRandom->SetSeed(0);
+  mRandom->SetSeed(54209);
   std::cout  << "StGlauberUtilities  Set random number seed = " << mRandom->GetSeed() <<std::endl ;
 
   /// Define impact parameter distribution in 0 < r < 20 fm
